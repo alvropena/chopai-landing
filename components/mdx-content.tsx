@@ -4,16 +4,16 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 
 const components = {
   h1: ({ children }: { children: React.ReactNode }) => (
-    <h1 className="text-3xl font-bold mb-6">{children}</h1>
+    <h1 className="text-3xl font-bold mb-6 text-nav">{children}</h1>
   ),
   h2: ({ children }: { children: React.ReactNode }) => (
-    <h2 className="text-2xl font-semibold mb-4">{children}</h2>
+    <h2 className="text-2xl font-semibold mb-4 text-nav">{children}</h2>
   ),
   h3: ({ children }: { children: React.ReactNode }) => (
-    <h3 className="text-xl font-semibold mb-3">{children}</h3>
+    <h3 className="text-xl font-semibold mb-3 text-nav">{children}</h3>
   ),
   h4: ({ children }: { children: React.ReactNode }) => (
-    <h4 className="text-lg font-semibold mb-2">{children}</h4>
+    <h4 className="text-lg font-semibold mb-2 text-nav">{children}</h4>
   ),
   p: ({ children }: { children: React.ReactNode }) => (
     <p className="mb-4 leading-relaxed">{children}</p>

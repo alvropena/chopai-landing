@@ -16,10 +16,11 @@ body {
     --popover-foreground: 0 0% 3.9%;
     --primary: 255 67 67;
     --primary-foreground: 0 0 100;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 261 56 23;    /* #4D2B87 */
+    --secondary-foreground: 0 0% 98%;
+    --nav: 261 56 23;         /* Navigation color - same as secondary in light mode */
     --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --muted-foreground: 215 27% 47%;  /* #667085 */
     --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
@@ -44,10 +45,11 @@ body {
     --popover-foreground: 0 0% 98%;
     --primary: 255 67 67;
     --primary-foreground: 0 0 100;
-    --secondary: 0 0% 14.9%;
+    --secondary: 0 0% 100%;    /* Keep white for secondary in dark mode */
     --secondary-foreground: 0 0% 98%;
+    --nav: 0 0% 100%;         /* Navigation color - white in dark mode */
     --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+    --muted-foreground: 220 14% 84%;  /* #D0D5DD */
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;

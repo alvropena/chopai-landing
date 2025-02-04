@@ -12,7 +12,7 @@ export default function CareersPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6">Careers</h1>
+      <h1 className="text-4xl font-bold mb-6 text-nav">Careers</h1>
       <div className="space-y-6">
         {jobPostings.length > 0 ? (
           jobPostings.map((job) => (
@@ -40,7 +40,7 @@ export default function CareersPage() {
       </div>
       
       <div className="mt-12">
-        <h2 className="text-2xl font-semibold mb-4">Still interested in joining our team?</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-nav">Still interested in joining our team?</h2>
         <p className="text-muted-foreground">
           Send your resume to{' '}
           <a 
