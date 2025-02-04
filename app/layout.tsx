@@ -2,6 +2,23 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import localFont from 'next/font/local';
+
+const ambit = localFont({
+  src: [
+    {
+      path: '../public/fonts/Ambit-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Ambit-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-ambit',
+});
 
 export const metadata: Metadata = {
   title: "Chop AI",
@@ -15,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen flex flex-col">
+      <body className={`${ambit.variable} font-sans antialiased min-h-screen flex flex-col`}>
         <header className="flex flex-col md:flex-row items-center justify-between px-4 md:px-8 py-4 border-b gap-4 md:gap-0">
           <div className="flex items-center">
             {/* Logo */}
@@ -59,9 +76,9 @@ export default function RootLayout({
               <Link href="/privacy" className="text-sm hover:text-gray-600">
                 Privacy Policy
               </Link>
-              <Link href="/support" className="text-sm hover:text-gray-600">
+              <a href="mailto:me@alvropena.com" className="text-sm hover:text-gray-600">
                 Contact Support
-              </Link>
+              </a>
             </div>
           </div>
         </footer>
