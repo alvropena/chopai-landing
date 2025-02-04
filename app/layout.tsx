@@ -3,6 +3,8 @@ import "./globals.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import localFont from 'next/font/local';
+import { Menu } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const ambit = localFont({
   src: [
@@ -33,16 +35,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${ambit.variable} font-sans antialiased min-h-screen flex flex-col`}>
-        <header className="flex flex-col md:flex-row items-center justify-between px-4 md:px-8 py-4 border-b gap-4 md:gap-0">
+        <header className="flex items-center justify-between px-4 md:px-8 py-4 border-b">
           <div className="flex items-center">
-            {/* Logo */}
             <Link href="/" className="text-xl font-bold">
               Logo
             </Link>
           </div>
 
-          {/* Navigation Menu */}
-          <nav className="flex gap-4 md:gap-8">
+          {/* Desktop Navigation - Hidden on Mobile */}
+          <nav className="hidden md:flex gap-8">
             <Link href="/about" className="hover:text-gray-600">
               About
             </Link>
@@ -52,12 +53,35 @@ export default function RootLayout({
             <Link href="/careers" className="hover:text-gray-600">
               Careers
             </Link>
+            <Button>
+              Download
+            </Button>
           </nav>
 
-          {/* Download Button */}
-          <Button className="w-full md:w-auto">
-            Download
-          </Button>
+          {/* Mobile Navigation - Sheet/Sidebar */}
+          <Sheet>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <div className="flex flex-col gap-4 mt-8">
+                <Link href="/about" className="text-lg hover:text-gray-600">
+                  About
+                </Link>
+                <Link href="/blog" className="text-lg hover:text-gray-600">
+                  Blog
+                </Link>
+                <Link href="/careers" className="text-lg hover:text-gray-600">
+                  Careers
+                </Link>
+                <Button className="w-full mt-4">
+                  Download
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
         </header>
 
         <main className="flex-grow">
