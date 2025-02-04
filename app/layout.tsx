@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import localFont from 'next/font/local';
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { TwitterLogoIcon, GitHubLogoIcon, VideoIcon } from "@radix-ui/react-icons";
 
 const ambit = localFont({
   src: [
@@ -38,7 +39,7 @@ export default function RootLayout({
         <header className="flex items-center justify-between px-4 md:px-8 py-4 border-b">
           <div className="flex items-center">
             <Link href="/" className="text-xl font-bold">
-              Logo
+              Chop
             </Link>
           </div>
 
@@ -62,7 +63,7 @@ export default function RootLayout({
             
             <div className="flex-1 flex justify-end">
               <Button>
-                Download
+                <span className="font-bold">Download</span>
               </Button>
             </div>
           </div>
@@ -86,7 +87,7 @@ export default function RootLayout({
                   Careers
                 </Link>
                 <Button className="w-full mt-4">
-                  Download
+                  <span className="font-bold">Download</span>
                 </Button>
               </div>
             </SheetContent>
@@ -98,19 +99,32 @@ export default function RootLayout({
         </main>
 
         <footer className="border-t px-4 md:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-center md:text-left">© {new Date().getFullYear()} Made by Optiffy</span>
-            </div>
-            <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-0 md:justify-between">
+            <span className="text-sm">© {new Date().getFullYear()} Made by Optiffy LLC</span>
+            
+            <div className="flex gap-2 items-center">
               <Link href="/tos" className="text-sm hover:text-gray-600">
                 Terms of Service
               </Link>
+              <span className="text-sm text-gray-400">•</span>
               <Link href="/privacy" className="text-sm hover:text-gray-600">
                 Privacy Policy
               </Link>
+              <span className="text-sm text-gray-400">•</span>
               <a href="mailto:me@alvropena.com" className="text-sm hover:text-gray-600">
-                Contact Support
+                Support
+              </a>
+            </div>
+
+            <div className="flex gap-6">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+                <TwitterLogoIcon className="h-5 w-5" />
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+                <GitHubLogoIcon className="h-5 w-5" />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+                <VideoIcon className="h-5 w-5" />
               </a>
             </div>
           </div>
