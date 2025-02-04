@@ -1,6 +1,11 @@
+'use client'
+
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 
 export default function Home() {
+  const { resolvedTheme } = useTheme();
+  
   return (
     <div className="container mx-auto px-4 py-12 min-h-[80vh] flex items-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -14,14 +19,14 @@ export default function Home() {
           </p>
           <div className="flex gap-4">
             <Image 
-              src="/download-google.svg"
+              src={`/download-google-${resolvedTheme === 'dark' ? 'light' : 'dark'}.svg`}
               alt="Download on Google Play"
               width={240}
               height={80}
               className="cursor-pointer hover:opacity-80 transition-opacity"
             />
             <Image 
-              src="/download-apple.svg"
+              src={`/download-apple-${resolvedTheme === 'dark' ? 'light' : 'dark'}.svg`}
               alt="Download on App Store"
               width={240}
               height={80}
