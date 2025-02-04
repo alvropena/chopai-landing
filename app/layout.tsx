@@ -8,6 +8,12 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { TwitterLogoIcon, GitHubLogoIcon, VideoIcon, DownloadIcon } from "@radix-ui/react-icons";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Logo } from "@/components/logo";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const ambit = localFont({
   src: [
@@ -120,15 +126,33 @@ export default function RootLayout({
               </div>
 
               <div className="flex gap-6">
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-nav hover:text-primary transition-colors">
-                  <TwitterLogoIcon className="h-5 w-5" />
-                </a>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href="#" className="text-nav hover:text-primary transition-colors">
+                        <TwitterLogoIcon className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Soon!</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
                 <a href="https://github.com/alvropena/chopai-landing" target="_blank" rel="noopener noreferrer" className="text-nav hover:text-primary transition-colors">
                   <GitHubLogoIcon className="h-5 w-5" />
                 </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-nav hover:text-primary transition-colors">
-                  <VideoIcon className="h-5 w-5" />
-                </a>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a href="#" className="text-nav hover:text-primary transition-colors">
+                        <VideoIcon className="h-5 w-5" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Soon!</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
             </div>
           </footer>
