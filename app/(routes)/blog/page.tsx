@@ -60,7 +60,7 @@ export default function BlogPage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Stay tuned! We're working on creating interesting content for you.
+              Stay tuned! We&apos;re working on creating interesting content for you.
               Check back soon for our latest articles and updates.
             </p>
           </CardContent>

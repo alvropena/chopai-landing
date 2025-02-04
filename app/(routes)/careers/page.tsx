@@ -32,7 +32,7 @@ export default function CareersPage() {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                We currently don't have any open positions. Please check back later for new opportunities.
+                We currently don&apos;t have any open positions. Please check back later for new opportunities.
               </p>
             </CardContent>
           </Card>
@@ -49,7 +49,7 @@ export default function CareersPage() {
           >
             me@alvropena.com
           </a>
-          {' '}and we'll reach out when a position matching your profile becomes available.
+          {' '}and we&apos;ll reach out when a position matching your profile becomes available.
         </p>
       </div>
     </div>

@@ -3,11 +3,10 @@ import "./globals.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import localFont from 'next/font/local';
-import { Menu, Moon, Sun } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { TwitterLogoIcon, GitHubLogoIcon, VideoIcon } from "@radix-ui/react-icons";
 import { ThemeProvider } from "@/components/theme-provider";
-import { useTheme } from "next-themes";
 import { ModeToggle } from "@/components/mode-toggle"
 import { Logo } from "@/components/logo";
 

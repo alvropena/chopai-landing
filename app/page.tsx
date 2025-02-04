@@ -2,12 +2,9 @@
 
 import { AppStoreButton } from '@/components/store-buttons';
 import { PlayStoreButton } from '@/components/store-buttons';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 
 export default function Home() {
-  const { resolvedTheme } = useTheme();
-  
   return (
     <div className="container mx-auto px-4 min-h-[80vh] flex items-center">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
