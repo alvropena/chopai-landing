@@ -16,12 +16,13 @@ const HeroSection = () => {
           Learn anything one card at a time
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground">
-          Chop is an AI-powered app that helps you learn any topic one card at
-          a time. Join a community and begin learning.
+          Chop is an AI-powered app that helps you learn any topic one card at a
+          time. Join a community and begin learning.
         </p>
         <div className="flex items-center gap-2 text-base md:text-lg text-muted-foreground mt-2">
           <span className="h-3 w-3 bg-green-400 rounded-full animate-[pulse_1.5s_ease-in-out_infinite] shadow-[0_0_12px_rgba(74,222,128,0.6)]"></span>
-          <span className="font-semibold text-nav">100+</span> people learning right now
+          <span className="font-semibold text-nav">100+</span> people learning
+          right now
         </div>
         <div className="flex gap-4 mt-8">
           <AppStoreButton />
@@ -30,15 +31,16 @@ const HeroSection = () => {
       </div>
 
       {/* Right Column */}
-      <div className="flex justify-end">
-        <Image
-          src="/demo.gif"
-          alt="App Demo"
-          width={500}
-          height={994}
-          priority
-          className="rounded-2xl border border-gray-200"
-        />
+      <div className="flex justify-center relative">
+        <div className="relative w-full max-w-[500px] aspect-[5/11] rounded-[2.5rem] overflow-hidden border-2 border-primary/20 shadow-lg">
+          <Image
+            src="/chop-demo.gif"
+            alt="App Demo"
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        </div>
       </div>
     </div>
   );
@@ -47,14 +49,18 @@ const HeroSection = () => {
 const WhySection = () => {
   return (
     <div className="py-20">
-      <h2 className="text-4xl font-bold text-center text-nav mb-16">Why Chop?</h2>
+      <h2 className="text-4xl font-bold text-center text-nav mb-16">
+        Why Chop?
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* AI-Powered Learning */}
         <div className="text-center space-y-4 px-8">
           <div className="flex justify-center">
             <BrainIcon className="h-16 w-16 text-[#F04438]" />
           </div>
-          <h3 className="text-xl font-semibold text-nav">Artificial Intelligence</h3>
+          <h3 className="text-xl font-semibold text-nav">
+            Artificial Intelligence
+          </h3>
           <p className="text-muted-foreground">
             AI creates perfect study cards for any topic you want to learn.
           </p>
