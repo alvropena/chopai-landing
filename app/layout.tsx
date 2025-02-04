@@ -43,20 +43,29 @@ export default function RootLayout({
           </div>
 
           {/* Desktop Navigation - Hidden on Mobile */}
-          <nav className="hidden md:flex gap-8">
-            <Link href="/about" className="hover:text-gray-600">
-              About
-            </Link>
-            <Link href="/blog" className="hover:text-gray-600">
-              Blog
-            </Link>
-            <Link href="/careers" className="hover:text-gray-600">
-              Careers
-            </Link>
-            <Button>
-              Download
-            </Button>
-          </nav>
+          <div className="hidden md:flex items-center justify-between flex-grow">
+            <div className="flex-1">
+              {/* Empty div for spacing */}
+            </div>
+            
+            <nav className="flex gap-8">
+              <Link href="/about" className="hover:text-gray-600">
+                About
+              </Link>
+              <Link href="/blog" className="hover:text-gray-600">
+                Blog
+              </Link>
+              <Link href="/careers" className="hover:text-gray-600">
+                Careers
+              </Link>
+            </nav>
+            
+            <div className="flex-1 flex justify-end">
+              <Button>
+                Download
+              </Button>
+            </div>
+          </div>
 
           {/* Mobile Navigation - Sheet/Sidebar */}
           <Sheet>
