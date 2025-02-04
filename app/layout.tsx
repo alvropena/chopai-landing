@@ -79,31 +79,34 @@ export default function RootLayout({
               </div>
             </div>
 
-            {/* Mobile Navigation - Sheet/Sidebar */}
-            <Sheet>
-              <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent>
-                <div className="flex flex-col gap-4 mt-8">
-                  <Link href="/about" className="text-lg hover:text-gray-600">
-                    About
-                  </Link>
-                  <Link href="/blog" className="text-lg hover:text-gray-600">
-                    Blog
-                  </Link>
-                  <Link href="/careers" className="text-lg hover:text-gray-600">
-                    Careers
-                  </Link>
-                  <ModeToggle />
-                  <Button className="w-full">
-                    <span className="font-bold">Download</span>
+            {/* Mobile Navigation */}
+            <div className="flex items-center gap-2 md:hidden">
+              <ModeToggle />
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
                   </Button>
-                </div>
-              </SheetContent>
-            </Sheet>
+                </SheetTrigger>
+                <SheetContent>
+                  <div className="flex flex-col gap-4 mt-8">
+                    <Link href="/about" className="text-lg hover:text-gray-600">
+                      About
+                    </Link>
+                    <Link href="/blog" className="text-lg hover:text-gray-600">
+                      Blog
+                    </Link>
+                    <Link href="/careers" className="text-lg hover:text-gray-600">
+                      Careers
+                    </Link>
+
+                    <Button className="w-full">
+                      <span className="font-bold">Download</span>
+                    </Button>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </header>
 
           <main className="flex-grow">
