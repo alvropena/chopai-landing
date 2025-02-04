@@ -79,11 +79,11 @@ export default function RootLayout({
                   </Button>
                 </SheetTrigger>
                 <SheetContent>
-                  <div className="flex flex-col gap-4 mt-8">
-                    <Link href="/blog" className="text-lg text-nav hover:text-primary transition-colors">
+                  <div className="flex flex-col gap-4 mt-8 w-full">
+                    <Link href="/blog" className="text-lg text-nav hover:text-primary transition-colors w-full text-center">
                       Blog
                     </Link>
-                    <Link href="/careers" className="text-lg text-nav hover:text-primary transition-colors">
+                    <Link href="/careers" className="text-lg text-nav hover:text-primary transition-colors w-full text-center">
                       Careers
                     </Link>
                     <Button className="w-full">
