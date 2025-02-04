@@ -4,9 +4,9 @@ export default function AboutPage() {
       <h1 className="text-4xl font-bold mb-6 text-nav">About Us</h1>
       <div className="prose max-w-none">
         <p className="text-lg mb-4">
-          Welcome to our company. We are dedicated to delivering excellence in everything we do.
+          We are a team of developers, marketers, and designers who are passionate about education. 
         </p>
-        {/* Add more content sections as needed */}
+      
       </div>
     </div>
   );

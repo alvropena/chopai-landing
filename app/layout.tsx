@@ -7,7 +7,6 @@ import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { TwitterLogoIcon, GitHubLogoIcon, VideoIcon } from "@radix-ui/react-icons";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/mode-toggle"
 import { Logo } from "@/components/logo";
 
 const ambit = localFont({
@@ -37,13 +36,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <head />
       <body className={`${ambit.variable} font-sans antialiased min-h-screen flex flex-col`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
+          forcedTheme="dark"
           disableTransitionOnChange
         >
           <header className="flex items-center justify-between px-4 md:px-8 py-4 border-b">
@@ -57,20 +57,13 @@ export default function RootLayout({
                 {/* Empty div for spacing */}
               </div>
               
-              <nav className="flex gap-8">
-                <Link href="/about" className="text-nav hover:text-primary transition-colors">
-                  About
-                </Link>
+              <div className="flex items-center gap-4">
                 <Link href="/blog" className="text-nav hover:text-primary transition-colors">
                   Blog
                 </Link>
                 <Link href="/careers" className="text-nav hover:text-primary transition-colors">
                   Careers
                 </Link>
-              </nav>
-              
-              <div className="flex-1 flex justify-end gap-4">
-                <ModeToggle />
                 <Button>
                   <span className="font-bold">Download</span>
                 </Button>
@@ -79,7 +72,6 @@ export default function RootLayout({
 
             {/* Mobile Navigation */}
             <div className="flex items-center gap-2 md:hidden">
-              <ModeToggle />
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon">
@@ -88,16 +80,12 @@ export default function RootLayout({
                 </SheetTrigger>
                 <SheetContent>
                   <div className="flex flex-col gap-4 mt-8">
-                    <Link href="/about" className="text-lg text-nav hover:text-primary transition-colors">
-                      About
-                    </Link>
                     <Link href="/blog" className="text-lg text-nav hover:text-primary transition-colors">
                       Blog
                     </Link>
                     <Link href="/careers" className="text-lg text-nav hover:text-primary transition-colors">
                       Careers
                     </Link>
-
                     <Button className="w-full">
                       Download
                     </Button>

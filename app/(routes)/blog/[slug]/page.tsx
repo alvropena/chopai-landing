@@ -31,7 +31,7 @@ export default async function PostPage({ params }: PageProps) {
           <span>·</span>
           <time><strong>Last updated:</strong> {format(new Date(post.date), "MMMM do, yyyy")}</time>
         </div>
-        <hr className="border-border mb-8" />
+        <div className="border-t mb-8" />
         <MdxContent code={post.body.code} />
       </article>
     </div>
