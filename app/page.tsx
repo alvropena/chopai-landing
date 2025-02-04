@@ -19,14 +19,14 @@ export default function Home() {
           </p>
           <div className="flex gap-4">
             <Image 
-              src={`/download-google-${resolvedTheme === 'dark' ? 'light' : 'dark'}.svg`}
+              src={`/download-google-${resolvedTheme === 'dark' ? 'dark' : 'light'}.svg`}
               alt="Download on Google Play"
               width={240}
               height={80}
               className="cursor-pointer hover:opacity-80 transition-opacity"
             />
             <Image 
-              src={`/download-apple-${resolvedTheme === 'dark' ? 'light' : 'dark'}.svg`}
+              src={`/download-apple-${resolvedTheme === 'dark' ? 'dark' : 'light'}.svg`}
               alt="Download on App Store"
               width={240}
               height={80}
