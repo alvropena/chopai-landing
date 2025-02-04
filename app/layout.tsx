@@ -80,10 +80,8 @@ export default function RootLayout({
             {/* Mobile Navigation */}
             <div className="flex items-center gap-2 md:hidden">
               <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Menu className="h-6 w-6" />
-                  </Button>
+                <SheetTrigger asChild>                
+                    <Menu className="h-6 w-6" />                  
                 </SheetTrigger>
                 <SheetContent>
                   <div className="flex flex-col gap-4 mt-8 w-full">
