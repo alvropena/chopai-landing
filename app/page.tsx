@@ -86,21 +86,6 @@ const WhySection = () => {
   );
 };
 
-const CredibilitySection = () => {
-  return (
-    <div className="text-center py-20">
-      <div className="space-y-2">
-        <p className="text-xl md:text-2xl text-muted-foreground">
-          Used by
-        </p>
-        <p className="text-3xl md:text-4xl font-semibold text-nav">
-          2.5M persons 🌎
-        </p>
-      </div>
-    </div>
-  );
-};
-
 const CTASection = () => {
   return (
     <Card className="mt-12 py-6 text-center bg-primary/10">

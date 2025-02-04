@@ -3,6 +3,16 @@ import { allPosts } from 'contentlayer/generated';
 import { compareDesc, format, parseISO } from 'date-fns';
 import Link from 'next/link';
 
+// Add these types at the top of the file
+type BlogPost = {
+  slug: string;
+  url: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+};
+
 const NoPosts = () => (
   <Card className="text-center bg-primary/10">
     <CardHeader>
@@ -17,7 +27,7 @@ const NoPosts = () => (
   </Card>
 );
 
-const BlogPost = ({ post }: { post: any }) => (
+const BlogPost = ({ post }: { post: BlogPost }) => (
   <Link
     key={post.slug}
     href={post.url}
@@ -38,7 +48,7 @@ const BlogPost = ({ post }: { post: any }) => (
   </Link>
 );
 
-const MonthGroup = ({ monthYear, posts }: { monthYear: string; posts: any[] }) => (
+const MonthGroup = ({ monthYear, posts }: { monthYear: string; posts: BlogPost[] }) => (
   <div key={monthYear}>
     <h2 className="text-2xl font-semibold mb-4">{monthYear}</h2>
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
