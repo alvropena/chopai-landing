@@ -67,8 +67,8 @@ export default function BlogPage() {
   }, {} as Record<string, typeof posts>);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6 text-nav">Blog</h1>
+    <div className="container mx-auto px-4 py-8 md:max-w-[1400px]">
+      <h1 className="text-4xl font-bold mb-8 text-nav">Blog</h1>
       {posts.length > 0 ? (
         <div className="space-y-12">
           {Object.entries(groupedPosts).map(([monthYear, monthPosts]) => (

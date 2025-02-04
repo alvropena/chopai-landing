@@ -22,9 +22,9 @@ export default async function PostPage({ params }: PageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 md:max-w-[1400px]">
       <article>
-        <h1 className="text-4xl font-bold mb-4 text-nav">{post.title}</h1>
+        <h1 className="text-4xl font-bold mb-8 text-nav">{post.title}</h1>
         <h2 className="text-muted-foreground mb-4">{post.excerpt}</h2>
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
           <span><strong>Author:</strong> {post.author}</span>

@@ -40,8 +40,8 @@ export default function CareersPage() {
   const jobPostings: JobPosting[] = [];  // Empty array since there are no jobs currently
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6 text-nav">Careers</h1>
+    <div className="container mx-auto px-4 py-8 md:max-w-[1400px]">
+      <h1 className="text-4xl font-bold mb-8 text-nav">Careers</h1>
       <div className="space-y-6">
         {jobPostings.length > 0 ? (
           jobPostings.map((job) => (

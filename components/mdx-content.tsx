@@ -4,24 +4,24 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 
 const components = {
   h1: ({ children }: { children: React.ReactNode }) => (
-    <h1 className="text-3xl font-bold mb-6 text-nav">{children}</h1>
+    <h1 className="text-3xl md:text-4xl font-bold mb-6 text-nav">{children}</h1>
   ),
   h2: ({ children }: { children: React.ReactNode }) => (
-    <h2 className="text-2xl font-semibold mb-4 text-nav">{children}</h2>
+    <h2 className="text-2xl md:text-3xl font-bold mb-4 text-nav">{children}</h2>
   ),
   h3: ({ children }: { children: React.ReactNode }) => (
-    <h3 className="text-xl font-semibold mb-3 text-nav">{children}</h3>
+    <h3 className="text-xl md:text-2xl font-semibold mb-3 text-nav">{children}</h3>
   ),
   h4: ({ children }: { children: React.ReactNode }) => (
-    <h4 className="text-lg font-semibold mb-2 text-nav">{children}</h4>
+    <h4 className="text-lg md:text-xl font-semibold mb-2 text-nav">{children}</h4>
   ),
   p: ({ children }: { children: React.ReactNode }) => (
-    <p className="mb-4 leading-relaxed">{children}</p>
+    <p className="text-md text-muted-foreground mb-4 leading-relaxed">{children}</p>
   ),
   a: ({ href, children }: { href?: string; children: React.ReactNode }) => (
     <a 
       href={href} 
-      className="text-blue-500 underline hover:text-blue-600 transition-colors"
+      className="text-primary underline hover:text-primary/80 transition-colors"
       target="_blank"
       rel="noopener noreferrer"
     >

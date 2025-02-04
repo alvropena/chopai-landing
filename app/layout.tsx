@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import localFont from 'next/font/local';
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { TwitterLogoIcon, GitHubLogoIcon, VideoIcon } from "@radix-ui/react-icons";
+import { TwitterLogoIcon, GitHubLogoIcon, VideoIcon, DownloadIcon } from "@radix-ui/react-icons";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Logo } from "@/components/logo";
 
@@ -65,6 +65,7 @@ export default function RootLayout({
                   Careers
                 </Link>
                 <Button>
+                  <DownloadIcon className="h-4 w-4" />
                   <span className="font-bold">Download</span>
                 </Button>
               </div>
@@ -87,6 +88,7 @@ export default function RootLayout({
                       Careers
                     </Link>
                     <Button className="w-full">
+                      <DownloadIcon className="h-4 w-4" />
                       Download
                     </Button>
                   </div>
@@ -121,7 +123,7 @@ export default function RootLayout({
                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-nav hover:text-primary transition-colors">
                   <TwitterLogoIcon className="h-5 w-5" />
                 </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-nav hover:text-primary transition-colors">
+                <a href="https://github.com/alvropena/chopai-landing" target="_blank" rel="noopener noreferrer" className="text-nav hover:text-primary transition-colors">
                   <GitHubLogoIcon className="h-5 w-5" />
                 </a>
                 <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-nav hover:text-primary transition-colors">

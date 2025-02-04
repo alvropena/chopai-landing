@@ -1,11 +1,8 @@
 "use client"
 
-import { useTheme } from "next-themes"
 import Image from "next/image"
 
 export function AppStoreButton() {
-  const { theme } = useTheme()
-  
   return (
     <a 
       href="https://apps.apple.com/your-app" 
@@ -14,7 +11,7 @@ export function AppStoreButton() {
       className="hover:opacity-90 transition-opacity"
     >
       <Image
-        src={theme === "dark" ? "/download-apple-dark.svg" : "/download-apple-light.svg"}
+        src="/download-apple-dark.svg"
         alt="Download on the App Store"
         width={240}
         height={80}
@@ -25,8 +22,6 @@ export function AppStoreButton() {
 }
 
 export function PlayStoreButton() {
-  const { theme } = useTheme()
-  
   return (
     <a 
       href="https://play.google.com/store/apps/your-app" 
@@ -35,7 +30,7 @@ export function PlayStoreButton() {
       className="hover:opacity-90 transition-opacity"
     >
       <Image
-        src={theme === "dark" ? "/download-google-dark.svg" : "/download-google-light.svg"}
+        src="/download-google-dark.svg"
         alt="Get it on Google Play"
         width={240}
         height={80}
