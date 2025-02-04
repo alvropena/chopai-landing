@@ -9,18 +9,34 @@ const components = {
   h2: ({ children }: { children: React.ReactNode }) => (
     <h2 className="text-2xl font-semibold mb-4">{children}</h2>
   ),
+  h3: ({ children }: { children: React.ReactNode }) => (
+    <h3 className="text-xl font-semibold mb-3">{children}</h3>
+  ),
+  h4: ({ children }: { children: React.ReactNode }) => (
+    <h4 className="text-lg font-semibold mb-2">{children}</h4>
+  ),
   p: ({ children }: { children: React.ReactNode }) => (
     <p className="mb-4 leading-relaxed">{children}</p>
   ),
   a: ({ href, children }: { href?: string; children: React.ReactNode }) => (
     <a 
       href={href} 
-      className="text-primary underline hover:text-primary/80 transition-colors"
+      className="text-blue-500 underline hover:text-blue-600 transition-colors"
       target="_blank"
       rel="noopener noreferrer"
     >
       {children}
     </a>
+  ),
+  ul: ({ children }: { children: React.ReactNode }) => (
+    <ul className="list-disc list-outside ml-6 mb-4 space-y-2 marker:text-foreground">
+      {children}
+    </ul>
+  ),
+  li: ({ children }: { children: React.ReactNode }) => (
+    <li className="leading-relaxed">
+      {children}
+    </li>
   ),
 }
 

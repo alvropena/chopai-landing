@@ -9,6 +9,7 @@ import { TwitterLogoIcon, GitHubLogoIcon, VideoIcon } from "@radix-ui/react-icon
 import { ThemeProvider } from "@/components/theme-provider";
 import { useTheme } from "next-themes";
 import { ModeToggle } from "@/components/mode-toggle"
+import { Logo } from "@/components/logo"
 
 const ambit = localFont({
   src: [
@@ -48,9 +49,7 @@ export default function RootLayout({
         >
           <header className="flex items-center justify-between px-4 md:px-8 py-4 border-b">
             <div className="flex items-center">
-              <Link href="/" className="text-xl font-bold">
-                Chop
-              </Link>
+              <Logo />
             </div>
 
             {/* Desktop Navigation - Hidden on Mobile */}
@@ -60,13 +59,13 @@ export default function RootLayout({
               </div>
               
               <nav className="flex gap-8">
-                <Link href="/about" className="hover:text-gray-600">
+                <Link href="/about" className="hover:text-primary transition-colors">
                   About
                 </Link>
-                <Link href="/blog" className="hover:text-gray-600">
+                <Link href="/blog" className="hover:text-primary transition-colors">
                   Blog
                 </Link>
-                <Link href="/careers" className="hover:text-gray-600">
+                <Link href="/careers" className="hover:text-primary transition-colors">
                   Careers
                 </Link>
               </nav>
@@ -90,18 +89,18 @@ export default function RootLayout({
                 </SheetTrigger>
                 <SheetContent>
                   <div className="flex flex-col gap-4 mt-8">
-                    <Link href="/about" className="text-lg hover:text-gray-600">
+                    <Link href="/about" className="text-lg hover:text-primary transition-colors">
                       About
                     </Link>
-                    <Link href="/blog" className="text-lg hover:text-gray-600">
+                    <Link href="/blog" className="text-lg hover:text-primary transition-colors">
                       Blog
                     </Link>
-                    <Link href="/careers" className="text-lg hover:text-gray-600">
+                    <Link href="/careers" className="text-lg hover:text-primary transition-colors">
                       Careers
                     </Link>
 
                     <Button className="w-full">
-                      <span className="font-bold">Download</span>
+                      Download
                     </Button>
                   </div>
                 </SheetContent>
@@ -118,27 +117,27 @@ export default function RootLayout({
               <span className="text-sm">© {new Date().getFullYear()} Made by Optiffy LLC</span>
               
               <div className="flex gap-2 items-center">
-                <Link href="/tos" className="text-sm hover:text-gray-600">
+                <Link href="/tos" className="text-sm hover:text-primary transition-colors">
                   Terms of Service
                 </Link>
                 <span className="text-sm text-gray-400">•</span>
-                <Link href="/privacy" className="text-sm hover:text-gray-600">
+                <Link href="/privacy" className="text-sm hover:text-primary transition-colors">
                   Privacy Policy
                 </Link>
                 <span className="text-sm text-gray-400">•</span>
-                <a href="mailto:me@alvropena.com" className="text-sm hover:text-gray-600">
+                <a href="mailto:me@alvropena.com" className="text-sm hover:text-primary transition-colors">
                   Support
                 </a>
               </div>
 
               <div className="flex gap-6">
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                   <TwitterLogoIcon className="h-5 w-5" />
                 </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                   <GitHubLogoIcon className="h-5 w-5" />
                 </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600">
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                   <VideoIcon className="h-5 w-5" />
                 </a>
               </div>

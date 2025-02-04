@@ -1,6 +1,28 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
-export const Post = defineDocumentType(() => ({
+const Legal = defineDocumentType(() => ({
+  name: 'Legal',
+  filePathPattern: '*.mdx',
+  contentType: 'mdx',
+  fields: {
+    title: {
+      type: 'string',
+      required: true,
+    },
+    date: {
+      type: 'date',
+      required: true,
+    },
+  },
+  computedFields: {
+    url: {
+      type: 'string',
+      resolve: (doc) => `/${doc._raw.sourceFileName.replace(/\.mdx$/, '')}`,
+    },
+  },
+}))
+
+const Post = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `posts/**/*.mdx`,
   contentType: 'mdx',
@@ -25,5 +47,5 @@ export const Post = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Post],
+  documentTypes: [Post, Legal],
 })
