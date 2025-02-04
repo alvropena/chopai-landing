@@ -1,16 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,10 +14,56 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="antialiased min-h-screen flex flex-col">
+        <header className="flex flex-col md:flex-row items-center justify-between px-4 md:px-8 py-4 border-b gap-4 md:gap-0">
+          <div className="flex items-center">
+            {/* Logo */}
+            <Link href="/" className="text-xl font-bold">
+              Logo
+            </Link>
+          </div>
+
+          {/* Navigation Menu */}
+          <nav className="flex gap-4 md:gap-8">
+            <Link href="/about" className="hover:text-gray-600">
+              About
+            </Link>
+            <Link href="/blog" className="hover:text-gray-600">
+              Blog
+            </Link>
+            <Link href="/careers" className="hover:text-gray-600">
+              Careers
+            </Link>
+          </nav>
+
+          {/* Download Button */}
+          <button className="w-full md:w-auto px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+            Download
+          </button>
+        </header>
+
+        <main className="flex-grow">
+          {children}
+        </main>
+
+        <footer className="border-t px-4 md:px-8 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-center md:text-left">© {new Date().getFullYear()} Made by Optiffy</span>
+            </div>
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+              <Link href="/terms" className="text-sm hover:text-gray-600">
+                Terms of Service
+              </Link>
+              <Link href="/privacy" className="text-sm hover:text-gray-600">
+                Privacy Policy
+              </Link>
+              <Link href="/support" className="text-sm hover:text-gray-600">
+                Contact Support
+              </Link>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   );
