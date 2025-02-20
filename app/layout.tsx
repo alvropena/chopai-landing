@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client";
+
 import "./globals.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -35,11 +36,6 @@ const ambit = localFont({
 	],
 	variable: "--font-ambit",
 });
-
-export const metadata: Metadata = {
-	title: "Chop AI",
-	description: "Chop AI",
-};
 
 export default function RootLayout({
 	children,
@@ -81,8 +77,17 @@ export default function RootLayout({
 								>
 									Careers
 								</Link>
-								<Button>
-									<DownloadIcon className="h-4 w-4" />
+
+								<Button
+									onClick={() => {
+										window.open(
+											"https://apps.apple.com/us/app/chop-ai/id6739903784",
+											"_blank",
+											"noopener,noreferrer",
+										);
+									}}
+								>
+									<DownloadIcon className="h-4 w-4 mr-2" />
 									<span className="font-bold">Download</span>
 								</Button>
 							</div>
@@ -108,7 +113,17 @@ export default function RootLayout({
 										>
 											Careers
 										</Link>
-										<Button className="w-full">
+
+										<Button
+											className="w-full"
+											onClick={() => {
+												window.open(
+													"https://apps.apple.com/us/app/chop-ai/id6739903784",
+													"_blank",
+													"noopener,noreferrer",
+												);
+											}}
+										>
 											<DownloadIcon className="h-4 w-4" />
 											Download
 										</Button>
