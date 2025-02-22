@@ -42,6 +42,17 @@ const Post = defineDocumentType(() => ({
       type: 'string',
       resolve: (post) => `/blog/${post.slug}`,
     },
+    formattedDate: {
+      type: 'string',
+      resolve: (post) => {
+        const date = new Date(post.date);
+        return date.toLocaleDateString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric'
+        });
+      }
+    }
   },
 }))
 

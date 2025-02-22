@@ -26,9 +26,9 @@ export default async function PostPage({ params }: PageProps) {
       <article>
         <h1 className="text-4xl font-bold mb-8 text-nav">{post.title}</h1>
         <h2 className="text-muted-foreground mb-4">{post.excerpt}</h2>
-        <div className="flex items-center gap-2 text-md text-muted-foreground mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-md text-muted-foreground mb-8">
           <span><strong>Author:</strong> {post.author}</span>
-          <span>·</span>
+          <span className="hidden sm:block">·</span>
           <time><strong>Last updated:</strong> {format(new Date(post.date), "MMMM do, yyyy")}</time>
         </div>
         <div className="border-t mb-8" />
