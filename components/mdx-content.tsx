@@ -33,6 +33,11 @@ const components = {
       {children}
     </ul>
   ),
+  ol: ({ children }: { children: React.ReactNode }) => (
+    <ol className="list-decimal list-outside ml-6 mb-4 space-y-2 marker:text-foreground">
+      {children}
+    </ol>
+  ),
   li: ({ children }: { children: React.ReactNode }) => (
     <li className="leading-relaxed">
       {children}
