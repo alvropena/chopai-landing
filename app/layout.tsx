@@ -20,6 +20,15 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+import { metadata } from "@/app/layout-metadata";
 
 const ambit = localFont({
 	src: [
@@ -61,36 +70,85 @@ export default function RootLayout({
 						</div>
 
 						{/* Desktop Navigation - Hidden on Mobile */}
-						<div className="hidden md:flex items-center justify-between flex-grow">
-							<div className="flex-1">{/* Empty div for spacing */}</div>
+						<div className="hidden md:flex items-center">
+							<NavigationMenu>
+								<NavigationMenuList className="gap-8">
+									<NavigationMenuItem>
+										<NavigationMenuLink
+											href="/blog"
+											className="text-nav hover:text-primary transition-colors text-base font-medium"
+										>
+											Blog
+										</NavigationMenuLink>
+									</NavigationMenuItem>
+									<NavigationMenuItem>
+										<NavigationMenuLink
+											href="/careers"
+											className="text-nav hover:text-primary transition-colors text-base font-medium"
+										>
+											Careers
+										</NavigationMenuLink>
+									</NavigationMenuItem>
+									<NavigationMenuItem>
+										<NavigationMenuTrigger className="text-base font-medium">Designers</NavigationMenuTrigger>
+										<NavigationMenuContent>
+											<div className="grid gap-3 p-4 w-[200px]">
+												<NavigationMenuLink 
+													href="/design/button"
+													className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+												>
+													<div className="text-sm font-medium leading-none">Button</div>
+												</NavigationMenuLink>
+												<NavigationMenuLink 
+													href="/design/colors"
+													className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+												>
+													<div className="text-sm font-medium leading-none">Colors</div>
+												</NavigationMenuLink>
+												<NavigationMenuLink 
+													href="/design/input"
+													className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+												>
+													<div className="text-sm font-medium leading-none">Input</div>
+												</NavigationMenuLink>
+												<NavigationMenuLink 
+													href="/design/typography"
+													className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+												>
+													<div className="text-sm font-medium leading-none">Typography</div>
+												</NavigationMenuLink>
+											</div>
+										</NavigationMenuContent>
+									</NavigationMenuItem>
+									<NavigationMenuItem>
+										<NavigationMenuLink 
+											href="https://docs.chop.so"
+											className="text-nav hover:text-primary transition-colors text-base font-medium"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											Developers
+										</NavigationMenuLink>
+									</NavigationMenuItem>
+								</NavigationMenuList>
+							</NavigationMenu>
+						</div>
 
-							<div className="flex items-center gap-4">
-								<Link
-									href="/blog"
-									className="text-nav hover:text-primary transition-colors"
-								>
-									Blog
-								</Link>
-								<Link
-									href="/careers"
-									className="text-nav hover:text-primary transition-colors"
-								>
-									Careers
-								</Link>
-
-								<Button
-									onClick={() => {
-										window.open(
-											"https://apps.apple.com/us/app/chop-ai/id6739903784",
-											"_blank",
-											"noopener,noreferrer",
-										);
-									}}
-								>
-									<DownloadIcon className="h-4 w-4 mr-2" />
-									<span className="font-bold">Download</span>
-								</Button>
-							</div>
+						<div className="hidden md:block">
+							<Button
+								variant="default"
+								size="sm"
+								onClick={() => {
+									window.open(
+										"https://apps.apple.com/us/app/chop-ai/id6739903784",
+										"_blank",
+										"noopener,noreferrer"
+									);
+								}}
+							>
+								<DownloadIcon className="h-4 w-4 mr-2" />
+								<span className="font-medium">Download</span>
+							</Button>
 						</div>
 
 						{/* Mobile Navigation */}
@@ -112,6 +170,20 @@ export default function RootLayout({
 											className="text-lg text-nav hover:text-primary transition-colors w-full text-center"
 										>
 											Careers
+										</Link>
+										<Link
+											href="/design"
+											className="text-lg text-nav hover:text-primary transition-colors w-full text-center"
+										>
+											Designers
+										</Link>
+										<Link
+											href="https://docs.chop.so"
+											className="text-lg text-nav hover:text-primary transition-colors w-full text-center"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											Developers
 										</Link>
 
 										<Button
