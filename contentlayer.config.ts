@@ -31,6 +31,8 @@ const Post = defineDocumentType(() => ({
     date: { type: 'date', required: true },
     excerpt: { type: 'string', required: true },
     author: { type: 'string', required: true },
+    image: { type: 'string', required: true },
+    category: { type: 'string', required: true },
     slug: { 
       type: 'string', 
       required: true,

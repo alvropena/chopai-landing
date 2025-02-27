@@ -1,9 +1,12 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+"use client";
+
+import { Card } from "@/components/ui/card";
 import { allPosts } from 'contentlayer/generated';
 import { compareDesc, format, parseISO } from 'date-fns';
 import Link from 'next/link';
+import Image from 'next/image';
 
-// Add these types at the top of the file
+// Update the BlogPost type to include image
 type BlogPost = {
   slug: string;
   url: string;
@@ -11,47 +14,50 @@ type BlogPost = {
   excerpt: string;
   author: string;
   date: string;
+  image?: string; // Add this field
 };
 
 const NoPosts = () => (
-  <Card className="text-center bg-primary/10">
-    <CardHeader>
-      <CardTitle>No Posts Yet</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className="text-muted-foreground">
-        Stay tuned! We&apos;re working on creating interesting content for you.
-        Check back soon for our latest articles and updates.
-      </p>
-    </CardContent>
+  <Card className="text-center bg-primary/10 p-8">
+    <h2 className="text-2xl font-bold mb-4">No Posts Yet</h2>
+    <p className="text-muted-foreground">
+      Stay tuned! We&apos;re working on creating interesting content for you.
+      Check back soon for our latest articles and updates.
+    </p>
   </Card>
 );
 
 const BlogPost = ({ post }: { post: BlogPost }) => (
-  <Link
-    key={post.slug}
-    href={post.url}
-    className="hover:no-underline"
-  >
-    <Card className="h-full transition-colors bg-primary/10 hover:bg-primary/20">
-      <CardHeader className="pb-4">
-        <CardTitle>{post.title}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="text-muted-foreground">{post.excerpt}</p>
-        <div className="flex flex-col gap-1 text-sm text-muted-foreground">
-          <span><strong>Author:</strong> {post.author}</span>
-          <time><strong>Last updated:</strong> {format(new Date(post.date), "MMMM do, yyyy")}</time>
+  <Link href={post.url} className="group block">
+    <div className="space-y-4">
+      <div className="aspect-[4/3] relative overflow-hidden rounded-lg">
+        <Image
+          src={post.image || '/blog/default-post.jpg'} // Fallback image
+          alt={post.title}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+      <div className="space-y-2">
+        <h3 className="font-semibold text-xl group-hover:text-primary transition-colors">
+          {post.title}
+        </h3>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <span>{post.author}</span>
+          <span>•</span>
+          <time dateTime={post.date}>
+            {format(parseISO(post.date), 'MMM d, yyyy')}
+          </time>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   </Link>
 );
 
 const MonthGroup = ({ monthYear, posts }: { monthYear: string; posts: BlogPost[] }) => (
-  <div key={monthYear}>
-    <h2 className="text-2xl font-semibold mb-4">{monthYear}</h2>
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <div className="space-y-6">
+    <h2 className="text-2xl font-semibold">{monthYear}</h2>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {posts.map((post) => (
         <BlogPost key={post.slug} post={post} />
       ))}
@@ -77,10 +83,16 @@ export default function BlogPage() {
   }, {} as Record<string, typeof posts>);
 
   return (
-    <div className="container mx-auto px-4 py-8 md:max-w-[1400px]">
-      <h1 className="text-4xl font-bold mb-8 text-nav">Blog</h1>
+    <div className="container mx-auto px-4 py-16 md:max-w-[1400px]">
+      <div className="text-center mb-16">
+        <h1 className="text-4xl font-bold mb-4">Blog</h1>
+        <p className="text-lg text-muted-foreground">
+          Discover insights about AI and learning
+        </p>
+      </div>
+
       {posts.length > 0 ? (
-        <div className="space-y-12">
+        <div className="space-y-20">
           {Object.entries(groupedPosts).map(([monthYear, monthPosts]) => (
             <MonthGroup key={monthYear} monthYear={monthYear} posts={monthPosts} />
           ))}
