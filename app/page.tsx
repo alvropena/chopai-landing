@@ -2,10 +2,16 @@
 
 import { AppStoreButton } from "@/components/store-buttons";
 import { PlayStoreButton } from "@/components/store-buttons";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { DownloadIcon, BrainIcon, UsersIcon, TrophyIcon } from "lucide-react";
+import { DownloadIcon, BrainIcon, UsersIcon, TrophyIcon, ArrowDownIcon, CheckIcon } from "lucide-react";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const HeroSection = () => {
 	return (
@@ -92,6 +98,187 @@ const WhySection = () => {
 	);
 };
 
+const PricingSection = () => {
+	const tiers = [
+		{
+			name: "Hobby",
+			price: "$0",
+			description: "For non-commercial use by individuals, hobby apps and open-source projects.",
+			features: [
+				"10,000 translated words included monthly",
+				"Brand Voice & Context awareness",
+				"Unlimited glossary & languages",
+				"CI/CD integrations",
+				"Web & Mobile Apps",
+				"1 project"
+			],
+			buttonText: "Create free account",
+			buttonVariant: "outline" as const,
+		},
+		{
+			name: "Pro",
+			price: "$30",
+			description: "For small teams looking for unique distribution advantages.",
+			features: [
+				"Everything in Hobby",
+				"20,000 translated words included monthly",
+				"$2.50 per additional 1,000 translated words",
+				"Priority email support"
+			],
+			buttonText: "Get started",
+			buttonVariant: "default" as const,
+			popular: true,
+		},
+		{
+			name: "Team",
+			price: "$600",
+			description: "For teams at growing organizations that value reliability, security, and support.",
+			features: [
+				"Everything in Pro",
+				"100,000 translated words included monthly",
+				"$0.25 per additional 1,000 translated words",
+				"Unlimited projects",
+				"Private Slack channel",
+				"Web editor",
+				"Integrations"
+			],
+			buttonText: "Get started",
+			buttonVariant: "default" as const,
+		},
+	];
+
+	return (
+		<div className="py-20" id="pricing">
+			<div className="text-center mb-16">
+				<h2 className="text-4xl font-bold mb-4">10,000 words for free every month</h2>
+				<p className="text-lg text-muted-foreground">
+					Set up for free, scale up, invite your team, and go global.
+				</p>
+				<div className="flex justify-center gap-4 mt-6">
+					<Button variant="outline" className="gap-2">
+						FAQ <ArrowDownIcon className="h-4 w-4" />
+					</Button>
+					<Button>Create an account</Button>
+				</div>
+			</div>
+
+			<div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+				{tiers.map((tier) => (
+					<Card
+						key={tier.name}
+						className={`flex flex-col ${
+							tier.popular ? "border-primary shadow-lg scale-105" : ""
+						}`}
+					>
+						<CardHeader>
+							<CardTitle className="text-2xl">{tier.name}</CardTitle>
+							<CardDescription>{tier.description}</CardDescription>
+						</CardHeader>
+						<CardContent className="flex-grow">
+							<div className="mb-6">
+								<span className="text-4xl font-bold">{tier.price}</span>
+								<span className="text-muted-foreground ml-1">/mo</span>
+							</div>
+							<ul className="space-y-3">
+								{tier.features.map((feature) => (
+									<li key={feature} className="flex items-center gap-2">
+										<CheckIcon className="h-4 w-4 text-primary" />
+										<span>{feature}</span>
+									</li>
+								))}
+							</ul>
+						</CardContent>
+						<CardFooter>
+							<Button
+								variant={tier.buttonVariant}
+								className="w-full"
+								size="lg"
+							>
+								{tier.buttonText}
+							</Button>
+						</CardFooter>
+					</Card>
+				))}
+			</div>
+		</div>
+	);
+};
+
+const FAQSection = () => {
+	const faqs = [
+		{
+			question: "Can I switch from my translation management system?",
+			answer: "Yes, our platform is designed to be compatible with most existing translation management systems. We provide easy migration tools and support to help you transition smoothly."
+		},
+		{
+			question: "Can I switch from ChatGPT API to Lingo.dev for localization?",
+			answer: "Yes, we offer seamless integration and migration from ChatGPT API. Our platform provides specialized features for localization while maintaining compatibility with existing workflows."
+		},
+		{
+			question: "How does quality assurance work with AI translations?",
+			answer: "Our AI translations go through multiple layers of quality checks. We combine automated QA tools with human review options to ensure accuracy and context preservation in all translations."
+		},
+		{
+			question: "Can the API handle real-time chat translations?",
+			answer: "Yes, our API is optimized for real-time chat translations with low latency. We support websocket connections and provide SDKs for easy integration with chat applications."
+		},
+		{
+			question: "Does Lingo.dev work with marketing content?",
+			answer: "Absolutely! Our platform is specifically designed to handle marketing content with context awareness, brand voice preservation, and cultural adaptation features."
+		},
+		{
+			question: "How does dynamic content translation work?",
+			answer: "Dynamic content translation uses our real-time API to translate content on-the-fly. We cache common translations and use smart content detection to ensure efficient and accurate translations."
+		},
+		{
+			question: "How many languages does Lingo.dev support?",
+			answer: "We support over 100 languages with high-quality translations. Our platform continuously adds new languages and improves existing translation capabilities."
+		},
+		{
+			question: "How secure is Lingo.dev?",
+			answer: "We maintain the highest security standards with end-to-end encryption, SOC 2 compliance, and regular security audits. Your data is protected with enterprise-grade security measures."
+		}
+	];
+
+	return (
+		<div className="py-20" id="faq">
+			<div className="text-center mb-16">
+				<div className="inline-block mb-4 px-4 py-1 rounded-full border text-sm">
+					Common questions
+				</div>
+				<h2 className="text-4xl font-bold mb-4">FAQs</h2>
+				<p className="text-lg text-muted-foreground">
+					Questions from engineering teams who ship globally
+				</p>
+			</div>
+
+			<div className="max-w-3xl mx-auto">
+				<Accordion type="single" collapsible className="w-full">
+					{faqs.map((faq, index) => (
+						<AccordionItem key={index} value={`item-${index}`}>
+							<AccordionTrigger className="text-left">
+								{faq.question}
+							</AccordionTrigger>
+							<AccordionContent>
+								{faq.answer}
+							</AccordionContent>
+						</AccordionItem>
+					))}
+				</Accordion>
+			</div>
+
+			<div className="flex justify-center gap-4 mt-12">
+				<Button variant="outline" size="lg">
+					Get started
+				</Button>
+				<Button size="lg">
+					Create an account
+				</Button>
+			</div>
+		</div>
+	);
+};
+
 const CTASection = () => {
 	return (
 		<Card className="mt-12 py-6 text-center bg-primary/10">
@@ -126,6 +313,8 @@ export default function Home() {
 		<div className="container mx-auto px-4 py-8 md:max-w-[1400px]">
 			<HeroSection />
 			<WhySection />
+			<PricingSection />
+			<FAQSection />
 			<CTASection />
 		</div>
 	);
