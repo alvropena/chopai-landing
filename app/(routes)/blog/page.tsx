@@ -1,105 +1,91 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import { allPosts } from 'contentlayer/generated';
-import { compareDesc, format, parseISO } from 'date-fns';
-import Link from 'next/link';
-import Image from 'next/image';
+import { allPosts } from "contentlayer/generated";
+import { compareDesc, format, parseISO } from "date-fns";
+import Link from "next/link";
 
-// Update the BlogPost type to include image
 type BlogPost = {
-  slug: string;
-  url: string;
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-  image?: string; // Add this field
+	slug: string;
+	url: string;
+	title: string;
+	excerpt: string;
+	author: string;
+	date: string;
+	body: {
+		raw: string;
+	};
 };
 
-const NoPosts = () => (
-  <Card className="text-center bg-primary/10 p-8">
-    <h2 className="text-2xl font-bold mb-4">No Posts Yet</h2>
-    <p className="text-muted-foreground">
-      Stay tuned! We&apos;re working on creating interesting content for you.
-      Check back soon for our latest articles and updates.
-    </p>
-  </Card>
-);
+// Move the reading time calculation to a shared function
+function getReadingTime(content: string) {
+	const wordsPerMinute = 200;
+	const words = content.trim().split(/\s+/).length;
+	const minutes = Math.ceil(words / wordsPerMinute);
+	return `${minutes} min read`;
+}
 
-const BlogPost = ({ post }: { post: BlogPost }) => (
-  <Link href={post.url} className="group block">
-    <div className="space-y-4">
-      <div className="aspect-[4/3] relative overflow-hidden rounded-lg">
-        <Image
-          src={post.image || '/blog/default-post.jpg'} // Fallback image
-          alt={post.title}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-      </div>
-      <div className="space-y-2">
-        <h3 className="font-semibold text-xl group-hover:text-primary transition-colors">
-          {post.title}
-        </h3>
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <span>{post.author}</span>
-          <span>•</span>
-          <time dateTime={post.date}>
-            {format(parseISO(post.date), 'MMM d, yyyy')}
-          </time>
-        </div>
-      </div>
-    </div>
-  </Link>
-);
+const BlogPost = ({ post }: { post: BlogPost }) => {
+	return (
+		<Link href={post.url}>
+			<article className="bg-[#111111] rounded-lg p-6 hover:bg-[#1a1a1a] transition-colors h-full">
+				<h2 className="text-xl font-semibold text-white mb-2">{post.title}</h2>
+				<p className="text-gray-400 text-sm mb-4">{post.excerpt}</p>
+				<div className="flex items-center text-gray-500 text-sm">
+					<span>By {post.author}</span>
+					<span className="mx-2">•</span>
+					<span>{getReadingTime(post.body.raw)}</span>
+				</div>
+			</article>
+		</Link>
+	);
+};
 
-const MonthGroup = ({ monthYear, posts }: { monthYear: string; posts: BlogPost[] }) => (
-  <div className="space-y-6">
-    <h2 className="text-2xl font-semibold">{monthYear}</h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {posts.map((post) => (
-        <BlogPost key={post.slug} post={post} />
-      ))}
-    </div>
-  </div>
+const MonthGroup = ({
+	monthYear,
+	posts,
+}: { monthYear: string; posts: BlogPost[] }) => (
+	<div className="space-y-6">
+		<h2 className="text-2xl font-semibold text-white">{monthYear}</h2>
+		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{posts.map((post) => (
+				<BlogPost key={post.slug} post={post} />
+			))}
+		</div>
+	</div>
 );
 
 export default function BlogPage() {
-  const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
-  );
+	const posts = allPosts.sort((a, b) =>
+		compareDesc(new Date(a.date), new Date(b.date)),
+	);
 
-  // Group posts by month and year
-  const groupedPosts = posts.reduce((groups, post) => {
-    const date = parseISO(post.date);
-    const monthYear = format(date, 'MMMM yyyy');
-    
-    if (!groups[monthYear]) {
-      groups[monthYear] = [];
-    }
-    groups[monthYear].push(post);
-    return groups;
-  }, {} as Record<string, typeof posts>);
+	// Group posts by month and year
+	const groupedPosts = posts.reduce(
+		(groups, post) => {
+			const date = parseISO(post.date);
+			const monthYear = format(date, "MMMM yyyy");
 
-  return (
-    <div className="container mx-auto px-4 py-16 md:max-w-[1400px]">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold mb-4">Blog</h1>
-        <p className="text-lg text-muted-foreground">
-          Discover insights about AI and learning
-        </p>
-      </div>
+			if (!groups[monthYear]) {
+				groups[monthYear] = [];
+			}
+			groups[monthYear].push(post);
+			return groups;
+		},
+		{} as Record<string, BlogPost[]>,
+	);
 
-      {posts.length > 0 ? (
-        <div className="space-y-20">
-          {Object.entries(groupedPosts).map(([monthYear, monthPosts]) => (
-            <MonthGroup key={monthYear} monthYear={monthYear} posts={monthPosts} />
-          ))}
-        </div>
-      ) : (
-        <NoPosts />
-      )}
-    </div>
-  );
+	return (
+		<div className="container mx-auto px-4 py-16">
+			<h1 className="text-4xl font-bold mb-12 text-white">All posts</h1>
+			<div className="space-y-20">
+				{Object.entries(groupedPosts).map(([monthYear, monthPosts]) => (
+					<MonthGroup
+						key={monthYear}
+						monthYear={monthYear}
+						posts={monthPosts}
+					/>
+				))}
+			</div>
+		</div>
+	);
 }
