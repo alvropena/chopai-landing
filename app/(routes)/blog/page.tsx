@@ -31,7 +31,7 @@ const BlogPost = ({ post }: { post: BlogPost }) => {
 				<h2 className="text-xl font-semibold text-white mb-2">{post.title}</h2>
 				<p className="text-gray-400 text-sm mb-4">{post.excerpt}</p>
 				<div className="flex items-center text-gray-500 text-sm">
-					<span>By {post.author}</span>
+					<span>{format(parseISO(post.date), "MMM d, yyyy")}</span>
 					<span className="mx-2">•</span>
 					<span>{getReadingTime(post.body.raw)}</span>
 				</div>
@@ -63,7 +63,7 @@ export default function BlogPage() {
 	const groupedPosts = posts.reduce(
 		(groups, post) => {
 			const date = parseISO(post.date);
-			const monthYear = format(date, "MMMM yyyy");
+			const monthYear = format(date, "MMM yyyy");
 
 			if (!groups[monthYear]) {
 				groups[monthYear] = [];
@@ -76,7 +76,7 @@ export default function BlogPage() {
 
 	return (
 		<div className="container mx-auto px-4 py-16">
-			<h1 className="text-4xl font-bold mb-12 text-white">All posts</h1>
+			<h1 className="text-4xl font-bold mb-12 text-white">Blog</h1>
 			<div className="space-y-20">
 				{Object.entries(groupedPosts).map(([monthYear, monthPosts]) => (
 					<MonthGroup

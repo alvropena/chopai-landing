@@ -2,10 +2,24 @@
 
 import { AppStoreButton } from "@/components/store-buttons";
 import { PlayStoreButton } from "@/components/store-buttons";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import {
+	Card,
+	CardContent,
+	CardHeader,
+	CardTitle,
+	CardDescription,
+	CardFooter,
+} from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { DownloadIcon, BrainIcon, UsersIcon, TrophyIcon, ArrowDownIcon, CheckIcon } from "lucide-react";
+import {
+	DownloadIcon,
+	BrainIcon,
+	UsersIcon,
+	TrophyIcon,
+	ArrowDownIcon,
+	CheckIcon,
+} from "lucide-react";
 import {
 	Accordion,
 	AccordionContent,
@@ -101,48 +115,54 @@ const WhySection = () => {
 const PricingSection = () => {
 	const tiers = [
 		{
-			name: "Hobby",
+			name: "Free",
 			price: "$0",
-			description: "For non-commercial use by individuals, hobby apps and open-source projects.",
+			description:
+				"Perfect for casual learners who want to explore and learn at their own pace.",
 			features: [
-				"10,000 translated words included monthly",
-				"Brand Voice & Context awareness",
-				"Unlimited glossary & languages",
-				"CI/CD integrations",
-				"Web & Mobile Apps",
-				"1 project"
+				"Access to all communities",
+				"100 AI-generated cards per month",
+				"Basic progress tracking",
+				"Join community discussions",
+				"Public leaderboard access",
+				"Basic learning analytics",
 			],
-			buttonText: "Create free account",
+			buttonText: "Get started",
 			buttonVariant: "outline" as const,
 		},
 		{
 			name: "Pro",
-			price: "$30",
-			description: "For small teams looking for unique distribution advantages.",
+			price: "$10",
+			description:
+				"For dedicated learners who want unlimited access and advanced features.",
 			features: [
-				"Everything in Hobby",
-				"20,000 translated words included monthly",
-				"$2.50 per additional 1,000 translated words",
-				"Priority email support"
+				"Everything in Free",
+				"Unlimited AI-generated cards",
+				"Advanced progress tracking",
+				"Priority card generation",
+				"Custom learning paths",
+				"Advanced analytics",
+				"Ad-free experience",
 			],
-			buttonText: "Get started",
+			buttonText: "Go Pro",
 			buttonVariant: "default" as const,
 			popular: true,
 		},
 		{
-			name: "Team",
-			price: "$600",
-			description: "For teams at growing organizations that value reliability, security, and support.",
+			name: "Annual",
+			price: "$100",
+			description:
+				"Best value for committed learners. Save $20 with annual billing.",
 			features: [
 				"Everything in Pro",
-				"100,000 translated words included monthly",
-				"$0.25 per additional 1,000 translated words",
-				"Unlimited projects",
-				"Private Slack channel",
-				"Web editor",
-				"Integrations"
+				"2 months free",
+				"Early access to new features",
+				"Premium community badges",
+				"Priority support",
+				"Exclusive learning events",
+				"Custom learning goals",
 			],
-			buttonText: "Get started",
+			buttonText: "Save with Annual",
 			buttonVariant: "default" as const,
 		},
 	];
@@ -150,15 +170,15 @@ const PricingSection = () => {
 	return (
 		<div className="py-20" id="pricing">
 			<div className="text-center mb-16">
-				<h2 className="text-4xl font-bold mb-4">10,000 words for free every month</h2>
+				<h2 className="text-4xl font-bold mb-4">Start learning for free</h2>
 				<p className="text-lg text-muted-foreground">
-					Set up for free, scale up, invite your team, and go global.
+					Begin your learning journey today and upgrade as you grow
 				</p>
 				<div className="flex justify-center gap-4 mt-6">
 					<Button variant="outline" className="gap-2">
 						FAQ <ArrowDownIcon className="h-4 w-4" />
 					</Button>
-					<Button>Create an account</Button>
+					<Button>Download Now</Button>
 				</div>
 			</div>
 
@@ -189,11 +209,7 @@ const PricingSection = () => {
 							</ul>
 						</CardContent>
 						<CardFooter>
-							<Button
-								variant={tier.buttonVariant}
-								className="w-full"
-								size="lg"
-							>
+							<Button variant={tier.buttonVariant} className="w-full" size="lg">
 								{tier.buttonText}
 							</Button>
 						</CardFooter>
@@ -208,36 +224,44 @@ const FAQSection = () => {
 	const faqs = [
 		{
 			question: "Can I switch from my translation management system?",
-			answer: "Yes, our platform is designed to be compatible with most existing translation management systems. We provide easy migration tools and support to help you transition smoothly."
+			answer:
+				"Yes, our platform is designed to be compatible with most existing translation management systems. We provide easy migration tools and support to help you transition smoothly.",
 		},
 		{
 			question: "Can I switch from ChatGPT API to Lingo.dev for localization?",
-			answer: "Yes, we offer seamless integration and migration from ChatGPT API. Our platform provides specialized features for localization while maintaining compatibility with existing workflows."
+			answer:
+				"Yes, we offer seamless integration and migration from ChatGPT API. Our platform provides specialized features for localization while maintaining compatibility with existing workflows.",
 		},
 		{
 			question: "How does quality assurance work with AI translations?",
-			answer: "Our AI translations go through multiple layers of quality checks. We combine automated QA tools with human review options to ensure accuracy and context preservation in all translations."
+			answer:
+				"Our AI translations go through multiple layers of quality checks. We combine automated QA tools with human review options to ensure accuracy and context preservation in all translations.",
 		},
 		{
 			question: "Can the API handle real-time chat translations?",
-			answer: "Yes, our API is optimized for real-time chat translations with low latency. We support websocket connections and provide SDKs for easy integration with chat applications."
+			answer:
+				"Yes, our API is optimized for real-time chat translations with low latency. We support websocket connections and provide SDKs for easy integration with chat applications.",
 		},
 		{
 			question: "Does Lingo.dev work with marketing content?",
-			answer: "Absolutely! Our platform is specifically designed to handle marketing content with context awareness, brand voice preservation, and cultural adaptation features."
+			answer:
+				"Absolutely! Our platform is specifically designed to handle marketing content with context awareness, brand voice preservation, and cultural adaptation features.",
 		},
 		{
 			question: "How does dynamic content translation work?",
-			answer: "Dynamic content translation uses our real-time API to translate content on-the-fly. We cache common translations and use smart content detection to ensure efficient and accurate translations."
+			answer:
+				"Dynamic content translation uses our real-time API to translate content on-the-fly. We cache common translations and use smart content detection to ensure efficient and accurate translations.",
 		},
 		{
 			question: "How many languages does Lingo.dev support?",
-			answer: "We support over 100 languages with high-quality translations. Our platform continuously adds new languages and improves existing translation capabilities."
+			answer:
+				"We support over 100 languages with high-quality translations. Our platform continuously adds new languages and improves existing translation capabilities.",
 		},
 		{
 			question: "How secure is Lingo.dev?",
-			answer: "We maintain the highest security standards with end-to-end encryption, SOC 2 compliance, and regular security audits. Your data is protected with enterprise-grade security measures."
-		}
+			answer:
+				"We maintain the highest security standards with end-to-end encryption, SOC 2 compliance, and regular security audits. Your data is protected with enterprise-grade security measures.",
+		},
 	];
 
 	return (
@@ -259,9 +283,7 @@ const FAQSection = () => {
 							<AccordionTrigger className="text-left">
 								{faq.question}
 							</AccordionTrigger>
-							<AccordionContent>
-								{faq.answer}
-							</AccordionContent>
+							<AccordionContent>{faq.answer}</AccordionContent>
 						</AccordionItem>
 					))}
 				</Accordion>
@@ -271,9 +293,7 @@ const FAQSection = () => {
 				<Button variant="outline" size="lg">
 					Get started
 				</Button>
-				<Button size="lg">
-					Create an account
-				</Button>
+				<Button size="lg">Create an account</Button>
 			</div>
 		</div>
 	);

@@ -1,0 +1,205 @@
+---
+title: "Introducing Pink"
+excerpt: "We are excited to announce the release of Pink, our first learning algorithm."
+date: "2025-03-07T12:00:00Z"
+author: "Alvaro Peña"
+image: "/blog/pink.jpg"
+category: "Technology"
+slug: "pink"
+---
+
+We are excited to announce the launch of Pink, the first version of our learning algorithm. Pink is a multilingual learning system designed to help users from all language-speaking countries learn on our platform, regardless of their native language. Since our launch, we have expanded from an English-only offering to over 10 languages, including Spanish, Italian, German, Japanese, and more.
+
+Learning in Chop will always be free. However, to maintain a profitable business, we offer premium users an enhanced experience with unlimited learning opportunities across multiple communities. When you create an account in Chop, you are initially asked to join one community. Once you select your community, our backend fetches pre-generated cards across various difficulty levels, which will help us determine your level of expertise.
+
+For example, if you choose Italian, we will provide you with 21 cards (3 batches). As you answer these cards, the system adjusts the difficulty based on your performance—if you answer correctly, you will receive harder cards, and if you make mistakes, easier cards will be presented. This adaptive learning approach ensures that each user can progress at their own pace.
+
+### Free Users
+
+For free users, after you complete your first study session of 21 cards, you will need to wait 24 hours before unlocking the next session. During this waiting period, our system analyzes your performance and uses metrics like time spent, skips, mistakes, and correct answers to determine the best cards for you to study the following day. This process ensures that the cards are appropriately challenging based on your previous answers.
+
+As a free user, you are limited to joining two communities, and this feature unlocks only after you complete your first study session. Each session consists of 21 cards, which will be drawn from both communities if you choose to join two. Additionally, if you exhaust all your lives—granted as 20 mistakes—you will have to wait 24 hours for 10 lives to respawn. Note that lives are not cumulative; you will only receive 10 lives each time you lose them all. But you can always purchase more lives if you don't want to wait.
+
+### Premium Users
+
+For premium users, if you complete your first study session and decide you don’t want to wait, you have two options for purchasing a subscription: you can choose the monthly plan or the yearly plan. We recommend the yearly plan, as it offers a more cost-effective solution.
+
+With a premium subscription, you will receive infinite lives, allowing you to make as many mistakes as you want. Additionally, you can join as many communities as you like. Once you complete the cards for each session in the communities you are part of, you will continue to see more cards, which will cover future topics, providing you with a never-ending learning experience.
+
+# Card Bucket System
+
+At the heart of our platform is a commitment to providing users with the smoothest learning experience possible. To achieve this, we have implemented several technologies in our backend, including background generation, streaming, and the use of agents.
+
+To further enrich the user experience, we designed our mobile app to emulate the seamless, engaging feel of TikTok. Users can enjoy instant initial loading, effortless scrolling, and content that is ready before they reach it. Additionally, the system offers personalized difficulty progression, ensuring that each user can learn at their own pace and skill level.
+
+In developing our card generation strategies, we considered two main approaches: pure real-time generation and pure caching. Real-time generation creates cards on the fly, offering perfect difficulty progression and fresh content, but it can cause delays of 7-10 seconds and incurs high API costs. In contrast, caching ensures instant loading and lower costs with pre-generated content, though its static nature limits personalization.
+
+To strike a balance between these two methods, we opted for a hybrid approach known as the **card bucket system**. This system aims to deliver instant card availability similar to TikTok while allowing cards to progress in difficulty based on user performance, ultimately enhancing the overall learning experience.
+
+In the card bucket system, we have five buckets, each corresponding to a level of difficulty, with 1 being the easiest and 5 the hardest. Each bucket contains pre-generated cards tailored to that difficulty level, similar to how TikTok has videos ready before users need them. When a user opens the app, we instantly provide cards from the appropriate bucket, eliminating any waiting time because the cards are already generated, much like TikTok showing videos instantly.
+
+To ensure a smooth learning experience, we monitor how well users answer the cards. If they perform well, we draw the next cards from a harder bucket; if they struggle, we provide cards from an easier bucket, akin to TikTok learning user preferences. We also keep track of the number of cards left in each bucket, generating more cards in the background when a bucket gets low—users remain unaware of this process, just as TikTok prepares additional content while you watch. 
+
+Additionally, we implement user history tracking to ensure that each user sees unique cards and never encounters the same card twice. This feature allows us to maintain personal progress and statistics, similar to how TikTok remembers what you've watched.
+
+### Step-by-step Overview
+
+1. Initial load: Same as free users, start with cached cards
+2. As they approach card 20-25 of their current batch:
+3. Start background generation of next batch
+4. Use their performance from current batch to determine difficulty
+5. Have next batch ready before they need it
+
+## Progressive Difficulty System
+
+The progressive difficulty system maintains levels and tracks user performance to tailor the learning experience. Below is an overview of how the system works:
+
+| Difficulty Level | Card Example          | User Response | Next Card Recommendation |
+|------------------|-----------------------|---------------|--------------------------|
+| Level 1.0       | Card 1                | ✓ correct     | Level 1.1                |
+| Level 1.1       | Card 2                | ✓ correct     | Level 1.2                |
+| Level 1.2       | Card 3                | ✗ wrong       | Level 1.1                |
+| Level 1.1       | Card 4                | ✓ correct     | Level 1.2                |
+
+### Explanation of the Table
+
+-  **Difficulty Levels**: The system uses levels 1-5, with sub-levels (e.g., 1.1, 1.2).
+-  **Mastery Score**: Each user's performance is tracked as a "mastery score" per topic or concept.
+-  **Next Card Recommendation**: Based on the user's response, the system adjusts the next card's difficulty accordingly.
+
+Infrastructure for Unlimited Learning:
+Multi-Layer Cache:
+Hot cache: Most common difficulty levels, instant access
+Warm cache: Adjacent difficulty levels, very quick access
+Cold generation: New cards for unexplored difficulties
+Predictive Generation:
+While user is on card 1, prepare cards 8-15
+While on cards 8-15, prepare 16-23
+Always stay ahead of user's progress
+Smart Batching:
+
+   Current batch (showing): 1-7
+   Next batch (ready): 8-14
+   Generating batch: 15-21
+   Planning batch: 22-28
+
+Performance-Based Pipeline:
+
+   User answers card 5 correctly
+   ↓
+   System checks performance trend
+   ↓
+   Adjusts difficulty of generating batch
+   ↓
+   New cards ready before user reaches them
+
+them
+Emergency Fallbacks:
+If user is exceptionally fast
+If generation is slower than expected
+If API has issues
+
+   Priority 1: Show cached cards at exact difficulty
+   Priority 2: Show cached cards at ±1 difficulty
+   Priority 3: Show previously generated cards user hasn't seen
+   Priority 4: Quick-generate simple cards
+
+cards
+This creates a "never-ending" learning experience where:
+Users never wait
+Difficulty constantly adjusts
+System stays ahead of user progress
+Always has fallback options
+Premium users can continue indefinitely
+The key is to make the system:
+Predictive - Always preparing future cards
+Adaptive - Adjusting difficulty based on real-time performance
+Resilient - Having multiple fallback options
+Seamless - Users never experience waiting or gaps
+Think of it like Netflix's buffering system - while you're watching one part, it's loading the next part, but also adjusting quality based on your connection, always ensuring uninterrupted viewing.
+
+Smart Filtering:
+Before showing any card to user:
+Check against their history
+Only show cards they haven't seen
+Exception: Cards they performed poorly on (intentional repetition)
+
+Instead of sending all previous cards as context, we can:
+Send last 10-20 questions as immediate context
+Send patterns/themes they've seen recently
+Send concepts they've mastered
+Send concepts they're struggling with
+
+Concept Mapping:
+Tag cards with concepts they cover
+     Card A: "What's 'hello'?" 
+     Tags: [greetings, basics, common_words]
+     
+     Card B: "Translate 'good morning'"
+     Tags: [greetings, time_expressions, common_words]
+     Use these tags to track concept coverage
+Ensure varied concept exposure
+
+Use these tags to track concept coverage
+Ensure varied concept exposure
+Intelligent Repetition:
+Some repetition is good for learning
+System decides to repeat based on:
+Time since last seen
+Previous performance
+Concept importance
+Current difficulty level
+Card Generation Strategy:
+Instead of checking against ALL previous cards
+Check against:
+Recently generated cards (last 100)
+Common patterns
+Core concepts
+Use semantic similarity to detect similar questions
+
+Difficulty Progression:
+   User Journey Example:
+   → Basic greetings (mastered)
+   → Time expressions (struggling)
+   → Numbers (not started)
+   
+   System will:
+   - Move away from greetings
+   - Reinforce time expressions
+   - Introduce numbers gradually
+
+   Content Buckets:
+   Hot Bucket: Ready to show
+   Warm Bucket: Generated, needs verification
+   Cold Bucket: Being generated
+   Archive: Previously shown cards
+
+   Generation Rules:
+Never generate exact duplicates
+Allow concept repetition with different approaches
+Vary question types (multiple choice/text input)
+Adapt to user's learning style
+    If user is strong in greetings:
+      → Generate harder greeting cards
+      → Introduce new related concepts
+      → Mix with other topics
+
+      This creates a system where:
+Cards feel fresh and unique
+Learning is personalized
+Repetition is intentional, not accidental
+Content is always available
+Generation stays ahead of user
+Premium users get continuous, quality content
+Think of it like Spotify's Discover Weekly:
+Knows what you've heard
+Knows what you like
+Provides fresh content
+Sometimes reintroduces old favorites
+Always has more ready
+But never feels repetitive
+The key is balancing:
+Content freshness
+Learning effectiveness
+Generation efficiency
+User engagement
